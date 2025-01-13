@@ -9,6 +9,8 @@ services:
       - "3000:3000"
     volumes:
       - .:/app
+    # depends_on:
+    #   - postgres
   notifications:
     build:
       context: .
@@ -19,3 +21,25 @@ services:
       - "3001:3001"
     volumes:
       - .:/app
+    # depends_on:
+    #   - postgres
+  search:
+    build:
+      context: .
+      dockerfile: apps/search/Dockerfile
+      target: builder
+    command: npm run start:dev search
+    ports:
+      - "3002:3002"
+    volumes:
+      - .:/app
+    # depends_on:
+    #   - postgres
+
+  # postgres:
+  #   image: postgres
+  #   environment:
+  #     POSTGRES_USER: postgres
+  #     POSTGRES_PASSWORD: postgres
+  #   ports:
+  #     - 5432:5432
