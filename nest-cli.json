@@ -1,12 +1,8 @@
 {
   "$schema": "https://json.schemastore.org/nest-cli",
   "collection": "@nestjs/schematics",
-  "sourceRoot": "apps/medical-forum/src",
-  "compilerOptions": {
-    "deleteOutDir": true,
-    "webpack": true,
-    "tsConfigPath": "apps/medical-forum/tsconfig.app.json"
-  },
+  "monorepo": true,
+  "root": ".",
   "projects": {
     "common": {
       "type": "library",
@@ -35,7 +31,5 @@
         "tsConfigPath": "apps/auth/tsconfig.app.json"
       }
     }
-  },
-  "monorepo": true,
-  "root": "apps/medical-forum"
+  }
 }
