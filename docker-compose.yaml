@@ -1,0 +1,21 @@
+services:
+  auth:
+    build:
+      context: .
+      dockerfile: apps/auth/Dockerfile
+      target: builder
+    command: npm run start:dev auth
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+  notifications:
+    build:
+      context: .
+      dockerfile: apps/notifications/Dockerfile
+      target: builder
+    command: npm run start:dev notifications
+    ports:
+      - "3001:3001"
+    volumes:
+      - .:/app
