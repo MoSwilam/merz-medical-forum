@@ -32,4 +32,5 @@ COPY . .
 
 COPY --from=builder /app/dist ./dist
 
-CMD ["node", "dist/apps/search/main.js"]
+#CMD ["node", "dist/apps/search/main.js"]
+CMD ["pnpm", "run", "start:prod", "dist/apps/search/main"]

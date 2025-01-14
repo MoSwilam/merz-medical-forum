@@ -4,7 +4,7 @@ import { Logger } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(SearchModule);
-  const globalPrefix = 'api/auth';
+  const globalPrefix = 'api/search';
   app.setGlobalPrefix(globalPrefix);
   const port = process.env.PORT || 3002;
   await app.listen(port);

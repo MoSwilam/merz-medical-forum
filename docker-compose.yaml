@@ -9,8 +9,10 @@ services:
       - "3000:3000"
     volumes:
       - .:/app
-    # depends_on:
-    #   - postgres
+    depends_on:
+      - postgres
+
+
   notifications:
     build:
       context: .
@@ -21,8 +23,10 @@ services:
       - "3001:3001"
     volumes:
       - .:/app
-    # depends_on:
-    #   - postgres
+    depends_on:
+      - postgres
+
+
   search:
     build:
       context: .
@@ -33,13 +37,17 @@ services:
       - "3002:3002"
     volumes:
       - .:/app
-    # depends_on:
-    #   - postgres
+    env_file:
+      - ./apps/search/.env
+    depends_on:
+      - postgres
 
-  # postgres:
-  #   image: postgres
-  #   environment:
-  #     POSTGRES_USER: postgres
-  #     POSTGRES_PASSWORD: postgres
-  #   ports:
-  #     - 5432:5432
+
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: merz_search_db
+    ports:
+      - 5432:5432
