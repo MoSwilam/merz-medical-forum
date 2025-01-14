@@ -1,16 +1,17 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { SearchService } from './search.service';
+import { CreateMappingDTO } from '@lib';
 
 @Controller()
 export class SearchController {
   constructor(private readonly searchService: SearchService) {}
 
-  @Post()
-  createKeywords(@Body() keywords: any) {
-    return this.searchService.create(keywords);
+  @Post('/create')
+  createKeywords(@Body() payload: CreateMappingDTO) {
+    return this.searchService.create(payload);
   }
 
-  @Get()
+  @Get('')
   get() {
     return this.searchService.get();
   }

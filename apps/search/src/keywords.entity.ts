@@ -1,5 +1,12 @@
 import { repositories } from '@lib';
-import { Entity, Column, PrimaryGeneratedColumn, DataSource } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  DataSource,
+  ManyToMany,
+} from 'typeorm';
+import { ArticleEntity } from './articles.entity';
 
 @Entity()
 export class KeywordEntity {
@@ -8,6 +15,9 @@ export class KeywordEntity {
 
   @Column('text', { array: true })
   terms: string[];
+
+  @ManyToMany(() => ArticleEntity, (article) => article.keywords)
+  articles: ArticleEntity[];
 }
 
 export const keywordEntityProvider: any = [
