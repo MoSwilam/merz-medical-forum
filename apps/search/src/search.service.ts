@@ -27,19 +27,31 @@ export class SearchService {
     return await this.articleRepo.save(articleDoc);
   }
 
-  async get() {
-    const searchTerm = 'two';
+  async search(keyword: string) {
+    const articleDoc = await this.articleRepo
+      .createQueryBuilder('article')
+      //.leftJoinAndSelect('article.keywords', 'keyword')
+      .innerJoin('article.keywords', 'keyword')
+      .where('keyword.terms @> ARRAY[:...searchTerms]', {
+        searchTerms: [keyword],
+      })
+      .getMany();
 
+    if (!articleDoc.length) {
+      return {
+        message: `no articles matching the search term "${keyword}"`,
+      };
+    }
+  }
+
+  async getAll(): Promise<any> {
     return await this.articleRepo
       .createQueryBuilder('article')
       .leftJoinAndSelect('article.keywords', 'keyword')
-      .where('keyword.terms @> ARRAY[:...searchTerms]', {
-        searchTerms: [searchTerm],
-      })
       .getMany();
   }
 
-  async getAll() {
+  async getArticles() {
     return await this.articleRepo.find();
   }
 

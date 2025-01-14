@@ -16,7 +16,7 @@ export enum ArticleType {
   TEXT = 'text',
 }
 
-@Entity()
+@Entity({ name: 'articles' })
 export class ArticleEntity {
   @PrimaryGeneratedColumn()
   id: number;
@@ -29,7 +29,6 @@ export class ArticleEntity {
 
   @Column({
     type: 'jsonb', // or 'json' if preferred
-    nullable: true, // allow null if needed
   })
   content: any;
 

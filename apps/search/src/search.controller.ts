@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { SearchService } from './search.service';
 import { CreateMappingDTO } from '@lib';
 
@@ -11,8 +11,23 @@ export class SearchController {
     return this.searchService.create(payload);
   }
 
-  @Get('')
-  get() {
-    return this.searchService.get();
+  @Get('/get')
+  search(@Query('keyword') keyword: string) {
+    return this.searchService.search(keyword);
+  }
+
+  @Get('/findAll')
+  findAll() {
+    return this.searchService.getAll();
+  }
+
+  @Get('/articles')
+  getArticles() {
+    return this.searchService.getArticles();
+  }
+
+  @Get('/keywords')
+  getKeywords() {
+    return this.searchService.getSearchTerms();
   }
 }

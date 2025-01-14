@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 import { ArticleEntity } from './articles.entity';
 
-@Entity()
+@Entity({ name: 'keywords' })
 export class KeywordEntity {
   @PrimaryGeneratedColumn()
   id: number;
