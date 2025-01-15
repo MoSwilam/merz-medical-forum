@@ -1,5 +1,10 @@
-import { CreateMappingDTO, repositories } from '@lib';
-import { Inject, Injectable } from '@nestjs/common';
+import { AddKeywordToArticleDTO, CreateMappingDTO, repositories } from '@lib';
+import {
+  BadRequestException,
+  Inject,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { KeywordEntity } from './keywords.entity';
 import { ArticleEntity, ArticleType } from './articles.entity';
@@ -27,6 +32,15 @@ export class SearchService {
     return await this.articleRepo.save(articleDoc);
   }
 
+  async fetchData() {
+    const posts = await fetch('https://dummyjson.com/posts?limit=10');
+    const postJson = await posts.json();
+    const postsContents = postJson.posts.map((post: any) => {
+      return { content: post.body, type: 'text' };
+    });
+    return await this.articleRepo.insert(postsContents);
+  }
+
   async search(keyword: string) {
     const articleDoc = await this.articleRepo
       .createQueryBuilder('article')
@@ -38,10 +52,9 @@ export class SearchService {
       .getMany();
 
     if (!articleDoc.length) {
-      return {
-        message: `no articles matching the search term "${keyword}"`,
-      };
+      throw new NotFoundException(`No articles found for keyword ${keyword}`);
     }
+    return articleDoc;
   }
 
   async getAll(): Promise<any> {
@@ -57,5 +70,39 @@ export class SearchService {
 
   async getSearchTerms() {
     return await this.keywordRepo.find();
+  }
+
+  async updateKeywords(
+    articleId: number,
+    keywordsToAdd: AddKeywordToArticleDTO,
+  ) {
+    const article = await this.articleRepo.findOne({
+      where: { id: articleId },
+      relations: ['keywords'],
+    });
+
+    if (!article) {
+      throw new NotFoundException(`Article with id ${articleId} not found`);
+    }
+
+    const { keywords } = article;
+    if (
+      keywords.some((existingKeyword) =>
+        keywordsToAdd.terms.some((newTerm) =>
+          existingKeyword.terms.includes(newTerm),
+        ),
+      )
+    ) {
+      // At least one of the new terms already exists in one of the associated keywords.
+      throw new BadRequestException(
+        `One or more of the keywords [${keywordsToAdd.terms.join(', ')}] is already associated with article ${articleId} having content ${article.content}`,
+      );
+    }
+
+    const keywordsDoc = this.keywordRepo.create({ terms: keywordsToAdd.terms });
+    const savedKeyWords = await this.keywordRepo.save(keywordsDoc);
+
+    article.keywords.push(savedKeyWords);
+    return await this.articleRepo.save(article);
   }
 }

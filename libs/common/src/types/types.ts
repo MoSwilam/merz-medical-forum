@@ -4,3 +4,7 @@ export type CreateMappingDTO = {
   terms: string[];
   article: string;
 };
+
+export type AddKeywordToArticleDTO = {
+  terms: string[];
+};

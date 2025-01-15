@@ -1,6 +1,14 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Query,
+} from '@nestjs/common';
 import { SearchService } from './search.service';
-import { CreateMappingDTO } from '@lib';
+import { AddKeywordToArticleDTO, CreateMappingDTO } from '@lib';
 
 @Controller()
 export class SearchController {
@@ -16,6 +24,11 @@ export class SearchController {
     return this.searchService.search(keyword);
   }
 
+  @Get('/fetch')
+  fetchData() {
+    return this.searchService.fetchData();
+  }
+
   @Get('/findAll')
   findAll() {
     return this.searchService.getAll();
@@ -29,5 +42,13 @@ export class SearchController {
   @Get('/keywords')
   getKeywords() {
     return this.searchService.getSearchTerms();
+  }
+
+  @Patch('/:articleId/keywords/add')
+  updateKeywords(
+    @Body() payload: AddKeywordToArticleDTO,
+    @Param('articleId') articleId: number,
+  ) {
+    return this.searchService.updateKeywords(articleId, payload);
   }
 }
