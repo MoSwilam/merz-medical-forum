@@ -8,20 +8,39 @@ import {
   Query,
 } from '@nestjs/common';
 import { SearchService } from './search.service';
-import { AddKeywordToArticleDTO, CreateMappingDTO } from '@lib';
+import {
+  AddKeywordToArticleDTO,
+  CreateMappingDTO,
+  CreateNewArticleDTO,
+} from '@lib';
 
 @Controller()
 export class SearchController {
   constructor(private readonly searchService: SearchService) {}
 
   @Post('/create')
-  createKeywords(@Body() payload: CreateMappingDTO) {
-    return this.searchService.create(payload);
+  createMapping(@Body() payload: CreateMappingDTO) {
+    return this.searchService.createKeyWordAndArticleAndMapThem(payload);
+  }
+
+  @Post('/create-article')
+  createArticle(@Body() payload: CreateNewArticleDTO) {
+    return this.searchService.createArticle(payload);
   }
 
   @Get('/get')
-  search(@Query('keyword') keyword: string) {
+  search(@Query('keywords') keyword: string) {
     return this.searchService.search(keyword);
+  }
+
+  @Get('/keywords/:id')
+  getKeyordsWithAssociatedArticles(@Param('id') id: number) {
+    return this.searchService.getKeywordByIdAndAssociatedArticles(id);
+  }
+
+  @Get('/article/:id')
+  getArticleWithKeywords(@Param('id') id: number) {
+    return this.searchService.getArticleWithKeywords(id);
   }
 
   @Get('/fetch')

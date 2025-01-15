@@ -1,4 +1,9 @@
-import { AddKeywordToArticleDTO, CreateMappingDTO, repositories } from '@lib';
+import {
+  AddKeywordToArticleDTO,
+  CreateMappingDTO,
+  CreateNewArticleDTO,
+  repositories,
+} from '@lib';
 import {
   BadRequestException,
   Inject,
@@ -18,7 +23,9 @@ export class SearchService {
     private articleRepo: Repository<ArticleEntity>,
   ) {}
 
-  async create(data: CreateMappingDTO): Promise<any> {
+  async createKeyWordAndArticleAndMapThem(
+    data: CreateMappingDTO,
+  ): Promise<any> {
     const { terms, article } = data;
     const keywords = this.keywordRepo.create({ terms });
     const savedKeyWords = await this.keywordRepo.save(keywords);
@@ -32,6 +39,14 @@ export class SearchService {
     return await this.articleRepo.save(articleDoc);
   }
 
+  async createArticle(payload: CreateNewArticleDTO) {
+    const articleDoc = this.articleRepo.create({
+      type: ArticleType.TEXT,
+      content: payload.content,
+    });
+    return await this.articleRepo.save(articleDoc);
+  }
+
   async fetchData() {
     const posts = await fetch('https://dummyjson.com/posts?limit=10');
     const postJson = await posts.json();
@@ -41,20 +56,50 @@ export class SearchService {
     return await this.articleRepo.insert(postsContents);
   }
 
-  async search(keyword: string) {
+  async search(userInput: string) {
+    const searchTermsArray = userInput.split(',').map((t) => t.trim());
     const articleDoc = await this.articleRepo
       .createQueryBuilder('article')
-      //.leftJoinAndSelect('article.keywords', 'keyword')
       .innerJoin('article.keywords', 'keyword')
+      //? Using && (keyword.terms && :searchTerms)
+      //? Matches rows if there is any overlap between user-provided terms and the terms array—i.e., at least one term is in common.
+      // .where('keyword.terms && :searchTerms', { searchTerms: searchTermsArray })
+      //? *Using @> (keyword.terms @> ARRAY[:...searchTerms])
+      //? Ensures that all user-provided search terms exist within the terms array. If even one term is missing, the row won’t match. 
       .where('keyword.terms @> ARRAY[:...searchTerms]', {
-        searchTerms: [keyword],
+        searchTerms: searchTermsArray,
       })
+      .orderBy('article.id', 'ASC')
       .getMany();
 
     if (!articleDoc.length) {
-      throw new NotFoundException(`No articles found for keyword ${keyword}`);
+      throw new NotFoundException(
+        `No articles found for keyword ${searchTermsArray}`,
+      );
     }
     return articleDoc;
+  }
+
+  async getArticleWithKeywords(articleId: number) {
+    const article = await this.articleRepo.findOne({
+      where: { id: articleId },
+      relations: ['keywords'],
+    });
+    if (!article) {
+      throw new NotFoundException(`Article with id ${articleId} not found`);
+    }
+    return article;
+  }
+
+  async getKeywordByIdAndAssociatedArticles(articleId: number) {
+    const article = await this.keywordRepo.findOne({
+      where: { id: articleId },
+      relations: ['articles'],
+    });
+    if (!article) {
+      throw new NotFoundException(`Article with id ${articleId} not found`);
+    }
+    return article;
   }
 
   async getAll(): Promise<any> {
@@ -65,11 +110,14 @@ export class SearchService {
   }
 
   async getArticles() {
-    return await this.articleRepo.find();
+    return await this.articleRepo.find({
+      order: { id: 'ASC' },
+      relations: ['keywords'],
+    });
   }
 
   async getSearchTerms() {
-    return await this.keywordRepo.find();
+    return await this.keywordRepo.find({ order: { id: 'ASC' } });
   }
 
   async updateKeywords(

@@ -8,3 +8,7 @@ export type CreateMappingDTO = {
 export type AddKeywordToArticleDTO = {
   terms: string[];
 };
+
+export type CreateNewArticleDTO = {
+  content: string;
+};
