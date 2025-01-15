@@ -65,7 +65,7 @@ export class SearchService {
       //? Matches rows if there is any overlap between user-provided terms and the terms array—i.e., at least one term is in common.
       // .where('keyword.terms && :searchTerms', { searchTerms: searchTermsArray })
       //? *Using @> (keyword.terms @> ARRAY[:...searchTerms])
-      //? Ensures that all user-provided search terms exist within the terms array. If even one term is missing, the row won’t match. 
+      //? Ensures that all user-provided search terms exist within the terms array. If even one term is missing, the row won’t match.
       .where('keyword.terms @> ARRAY[:...searchTerms]', {
         searchTerms: searchTermsArray,
       })
