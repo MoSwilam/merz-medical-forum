@@ -13,10 +13,17 @@ import {
   CreateMappingDTO,
   CreateNewArticleDTO,
 } from '@lib';
+import { EventPattern } from '@nestjs/microservices';
 
 @Controller()
 export class SearchController {
   constructor(private readonly searchService: SearchService) {}
+
+  @EventPattern('search')
+  async handleSearch(searchKeywords: string) {
+    console.log('---------------- searching for:', searchKeywords);
+    return this.searchService.search(searchKeywords);
+  }
 
   @Post('/create')
   createMapping(@Body() payload: CreateMappingDTO) {

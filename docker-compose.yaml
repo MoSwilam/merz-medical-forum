@@ -1,5 +1,5 @@
 services:
-  auth:
+  auth-app:
     build:
       context: .
       dockerfile: apps/auth/Dockerfile
@@ -13,28 +13,29 @@ services:
       - postgres
 
 
-  notifications:
-    build:
-      context: .
-      dockerfile: apps/notifications/Dockerfile
-      target: builder
-    command: npm run start:dev notifications
-    ports:
-      - "3001:3001"
-    volumes:
-      - .:/app
-    depends_on:
-      - postgres
+  # notifications:
+  #   build:
+  #     context: .
+  #     dockerfile: apps/notifications/Dockerfile
+  #     target: builder
+  #   command: npm run start:dev notifications
+  #   ports:
+  #     - "3001:3001"
+  #   volumes:
+  #     - .:/app
+  #   depends_on:
+  #     - postgres
 
 
-  search:
+  search-app:
     build:
       context: .
       dockerfile: apps/search/Dockerfile
       target: builder
     command: npm run start:dev search
     ports:
-      - "3002:3002"
+      - "3020:3020"
+      - "3021:3021"
     volumes:
       - .:/app
     env_file:
