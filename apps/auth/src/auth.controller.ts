@@ -9,4 +9,9 @@ export class AuthController {
   getHello(@Query('keywords') keywords: string) {
     return this.authService.getHello(keywords);
   }
+
+  @Get('health')
+  getHealth() {
+    return 'OK';
+  }
 }

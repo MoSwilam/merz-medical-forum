@@ -17,7 +17,8 @@ async function bootstrap() {
   const globalPrefix = 'api/auth';
   app.setGlobalPrefix(globalPrefix);
   const port = process.env.HTTP_PORT || 3000;
-  await app.listen(port);
+  await app.startAllMicroservices();
+  app.listen(port);
   Logger.log(
     `🚀 Auth app is running on: http://localhost:${port}/${globalPrefix}`,
   );

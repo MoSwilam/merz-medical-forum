@@ -14,7 +14,7 @@ async function bootstrap() {
   const globalPrefix = 'api/search';
   app.setGlobalPrefix(globalPrefix);
   const port = process.env.HTTP_PORT || 3002;
-  await app.listen(port);
+  await app.startAllMicroservices();
   Logger.log(
     `🚀 Search app is running on: http://localhost:${port}/${globalPrefix}`,
   );
