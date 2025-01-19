@@ -31,7 +31,7 @@ spec:
   ports:
     - port: 3000
       targetPort: 3000
-      nodePort: 30000
+      nodePort: {{ .Values.adminNodePort }}
       protocol: TCP
   selector:
     app: {{ .Values.adminAppName }}

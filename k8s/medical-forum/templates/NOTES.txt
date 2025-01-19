@@ -1,0 +1,2 @@
+search app is up on: localhost:{{ .Values.searchNodePort }}/api/search
+admin app up on: localhost:{{ .Values.adminNodePort }}/api/admin
