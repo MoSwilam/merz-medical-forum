@@ -2,6 +2,8 @@ FROM node:alpine as builder
 
 WORKDIR /app
 
+RUN apk add --no-cache tree
+
 COPY package.json ./
 COPY pnpm-lock.yaml ./
 COPY tsconfig.json tsconfig.json
@@ -11,10 +13,10 @@ RUN npm install -g pnpm
 
 RUN pnpm install
 
-COPY apps/auth apps/auth
+COPY apps/admin apps/admin
 COPY libs libs
 
-RUN pnpm run build
+RUN pnpm run build admin
 
 FROM node:alpine as prod
 
@@ -32,4 +34,5 @@ COPY . .
 
 COPY --from=builder /app/dist ./dist
 
-CMD ["node", "dist/apps/auth/main.js"]
+#CMD ["pnpm", "run", "start:prod", "dist/apps/admin/main"]
+CMD ["node", "dist/apps/admin/apps/admin/src/main.js"]

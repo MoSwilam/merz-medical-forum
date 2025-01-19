@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { AuthController } from './auth.controller';
-import { AuthService } from './auth.service';
+import { AdminController } from './admin.controller';
+import { AdminService } from './admin.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { APP_FILTER } from '@nestjs/core';
@@ -27,7 +27,7 @@ import { HttpExceptionsFilter } from '@lib';
       },
     ]),
   ],
-  controllers: [AuthController],
+  controllers: [AdminController],
   providers: [
     {
       provide: APP_FILTER,
@@ -41,7 +41,7 @@ import { HttpExceptionsFilter } from '@lib';
       provide: APP_FILTER,
       useClass: NetworkExceptionFilter,
     },
-    AuthService,
+    AdminService,
   ],
 })
-export class AuthModule {}
+export class AdminModule {}

@@ -2,17 +2,35 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+searchAppName: searchapp
+searchAppVersion: 1.0.0
+
+searchImage: searchimage
+searchImageTag: 0.0.5
+
+adminAppName: adminapp
+adminAppVersion: 1.0.0
+
+adminImage: adminimage
+adminImageTag: 0.0.3
+
+dbAppName: postgresimage
+dbImage: postgres
+
+
+
+
 replicaCount: 1
 
 image:
   repository: nginx
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: ''
 
 imagePullSecrets: []
-nameOverride: ""
-fullnameOverride: ""
+nameOverride: ''
+fullnameOverride: ''
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -23,15 +41,17 @@ serviceAccount:
   annotations: {}
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name: ""
+  name: ''
 
 podAnnotations: {}
 podLabels: {}
 
-podSecurityContext: {}
+podSecurityContext:
+  {}
   # fsGroup: 2000
 
-securityContext: {}
+securityContext:
+  {}
   # capabilities:
   #   drop:
   #   - ALL
@@ -45,8 +65,9 @@ service:
 
 ingress:
   enabled: false
-  className: ""
-  annotations: {}
+  className: ''
+  annotations:
+    {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
@@ -59,7 +80,8 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
-resources: {}
+resources:
+  {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following

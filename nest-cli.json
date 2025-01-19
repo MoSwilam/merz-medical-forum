@@ -22,13 +22,13 @@
         "tsConfigPath": "apps/notifications/tsconfig.app.json"
       }
     },
-    "auth": {
+    "admin": {
       "type": "application",
-      "root": "apps/auth",
+      "root": "apps/admin",
       "entryFile": "main",
-      "sourceRoot": "apps/auth/src",
+      "sourceRoot": "apps/admin/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/auth/tsconfig.app.json"
+        "tsConfigPath": "apps/admin/tsconfig.app.json"
       }
     },
     "search": {

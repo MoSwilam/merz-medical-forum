@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.adminAppName }}
+  labels:
+    app: {{ .Values.adminAppName }}
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: {{ .Values.adminAppName }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.adminAppName }}
+    spec:
+      containers:
+        - name: admin
+          image: "{{ .Values.adminImage }}:{{ .Values.adminImageTag }}"
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.adminAppName }}
+  labels:
+    app: {{ .Values.adminAppName }}
+spec:
+  ports:
+    - port: 3000
+      targetPort: 3000
+      protocol: TCP
+  selector:
+    app: {{ .Values.adminAppName }}
+  type: NodePort

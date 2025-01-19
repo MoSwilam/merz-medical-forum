@@ -1,13 +1,13 @@
 import { Controller, Get, NotFoundException, Query } from '@nestjs/common';
-import { AuthService } from './auth.service';
+import { AdminService } from './admin.service';
 
 @Controller()
-export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+export class AdminController {
+  constructor(private readonly adminService: AdminService) {}
 
   @Get()
   getHello(@Query('keywords') keywords: string) {
-    return this.authService.getHello(keywords);
+    return this.adminService.getHello(keywords);
   }
 
   @Get('health')
