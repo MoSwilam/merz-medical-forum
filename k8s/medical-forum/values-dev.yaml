@@ -2,24 +2,21 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-namespace: prod
+namespace: dev
 
-searchAppName: searchapp
-searchAppVersion: 1.0.0
+configmap:
+  data:
+    CUSTOM_MESSAGE: "Hello from the dev environment"
 
-searchImage: searchimage
-searchImageTag: 0.0.6
-searchNodePort: 30020
+searchNodePort: 30021
+adminNodePort: 30001
 
-adminAppName: adminapp
-adminAppVersion: 1.0.0
-adminNodePort: 30000
 
-adminImage: adminimage
-adminImageTag: 0.0.6
 
-dbAppName: postgresimage
-dbImage: postgres
+
+
+
+
 
 
 
