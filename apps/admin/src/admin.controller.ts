@@ -1,4 +1,4 @@
-import { Controller, Get, NotFoundException, Query } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import { AdminService } from './admin.service';
 
 @Controller()
@@ -12,6 +12,6 @@ export class AdminController {
 
   @Get('health')
   getHealth() {
-    throw new NotFoundException('Service is not healthy');
+    return 'OK';
   }
 }

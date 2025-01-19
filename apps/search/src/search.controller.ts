@@ -24,6 +24,11 @@ export class SearchController {
     return await this.searchService.search(searchKeywords);
   }
 
+  @Get('health')
+  getHealth() {
+    return 'OK';
+  }
+
   @Post('/create')
   createMapping(@Body() payload: CreateMappingDTO) {
     return this.searchService.createKeyWordAndArticleAndMapThem(payload);

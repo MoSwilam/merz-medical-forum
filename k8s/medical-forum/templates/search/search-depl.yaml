@@ -31,6 +31,7 @@ spec:
   ports:
     - port: 3020
       targetPort: 3002
+      nodePort: 30020
       protocol: TCP
   selector:
     app: {{ .Values.searchAppName }}

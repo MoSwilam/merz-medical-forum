@@ -6,13 +6,13 @@ searchAppName: searchapp
 searchAppVersion: 1.0.0
 
 searchImage: searchimage
-searchImageTag: 0.0.5
+searchImageTag: 0.0.6
 
 adminAppName: adminapp
 adminAppVersion: 1.0.0
 
 adminImage: adminimage
-adminImageTag: 0.0.3
+adminImageTag: 0.0.6
 
 dbAppName: postgresimage
 dbImage: postgres
