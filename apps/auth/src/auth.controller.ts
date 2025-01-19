@@ -1,4 +1,4 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, NotFoundException, Query } from '@nestjs/common';
 import { AuthService } from './auth.service';
 
 @Controller()
@@ -12,6 +12,6 @@ export class AuthController {
 
   @Get('health')
   getHealth() {
-    return 'OK';
+    throw new NotFoundException('Service is not healthy');
   }
 }

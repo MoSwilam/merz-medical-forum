@@ -21,8 +21,7 @@ export class SearchController {
 
   @EventPattern('search')
   async handleSearch(searchKeywords: string) {
-    console.log('---------------- searching for:', searchKeywords);
-    return this.searchService.search(searchKeywords);
+    return await this.searchService.search(searchKeywords);
   }
 
   @Post('/create')

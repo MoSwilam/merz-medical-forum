@@ -13,6 +13,7 @@ import {
 import { Repository } from 'typeorm';
 import { KeywordEntity } from './keywords.entity';
 import { ArticleEntity, ArticleType } from './articles.entity';
+import { RpcException } from '@nestjs/microservices';
 
 @Injectable()
 export class SearchService {
@@ -73,9 +74,11 @@ export class SearchService {
       .getMany();
 
     if (!articleDoc.length) {
-      throw new NotFoundException(
-        `No articles found for keyword ${searchTermsArray}`,
-      );
+      throw new RpcException({
+        statusCode: 404,
+        message: `No articles found for keyword ${searchTermsArray}`,
+        error: 'Not Found',
+      });
     }
     return articleDoc;
   }

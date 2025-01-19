@@ -11,12 +11,16 @@ async function bootstrap() {
     transport: Transport.TCP,
     options: {
       host: '0.0.0.0',
-      port: configService.get('HTTP_PORT'),
+      port: configService.get('TCP_PORT'),
     },
   });
   const globalPrefix = 'api/auth';
   app.setGlobalPrefix(globalPrefix);
   const port = process.env.HTTP_PORT || 3000;
+
+  // const { httpAdapter } = app.get(HttpAdapterHost);
+  // app.useGlobalFilters(new CatchEverythingFilter());
+
   await app.startAllMicroservices();
   app.listen(port);
   Logger.log(

@@ -3,6 +3,9 @@ import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ClientsModule, Transport } from '@nestjs/microservices';
+import { APP_FILTER } from '@nestjs/core';
+import { MicroserviceExceptionsFilter, NetworkExceptionFilter } from '@lib';
+import { HttpExceptionsFilter } from '@lib';
 
 @Module({
   imports: [
@@ -25,6 +28,20 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
     ]),
   ],
   controllers: [AuthController],
-  providers: [AuthService],
+  providers: [
+    {
+      provide: APP_FILTER,
+      useClass: MicroserviceExceptionsFilter,
+    },
+    {
+      provide: APP_FILTER,
+      useClass: HttpExceptionsFilter,
+    },
+    {
+      provide: APP_FILTER,
+      useClass: NetworkExceptionFilter,
+    },
+    AuthService,
+  ],
 })
 export class AuthModule {}
