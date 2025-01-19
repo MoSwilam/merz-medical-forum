@@ -16,7 +16,7 @@ describe('SearchController', () => {
 
   describe('root', () => {
     it('should return "Hello World!"', () => {
-      expect(searchController.getArticles()).toBeDefined();
+      expect(searchController.getHealth()).toBe('OK');
     });
   });
 });

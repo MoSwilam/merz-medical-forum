@@ -1,6 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AdminController } from './admin.controller';
 import { AdminService } from './admin.service';
+import { SERVICES } from '@lib';
 
 describe('AdminControlle', () => {
   let adminController: AdminController;
@@ -8,15 +9,24 @@ describe('AdminControlle', () => {
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
       controllers: [AdminController],
-      providers: [AdminService],
+      providers: [
+        AdminService,
+        {
+          provide: SERVICES.SEARCH_SERVICE,
+          useValue: {
+            getHealth: () => 'OK',
+            // getHealth2: jest.fn().mockResolvedValue('OK'),
+          },
+        },
+      ],
     }).compile();
 
     adminController = app.get<AdminController>(AdminController);
   });
 
-  describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(adminController.getHello('')).toBeDefined();
+  describe('Health Check', () => {
+    it('Test the health check endooint"', () => {
+      expect(adminController.getHealth()).toBe('OK');
     });
   });
 });

@@ -4,7 +4,11 @@ import { AdminService } from './admin.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { APP_FILTER } from '@nestjs/core';
-import { MicroserviceExceptionsFilter, NetworkExceptionFilter } from '@lib';
+import {
+  MicroserviceExceptionsFilter,
+  NetworkExceptionFilter,
+  SERVICES,
+} from '@lib';
 import { HttpExceptionsFilter } from '@lib';
 
 @Module({
@@ -15,7 +19,7 @@ import { HttpExceptionsFilter } from '@lib';
     }),
     ClientsModule.registerAsync([
       {
-        name: 'SEARCH_SERVICE',
+        name: SERVICES.SEARCH_SERVICE,
         useFactory: (configService: ConfigService) => ({
           transport: Transport.TCP,
           options: {

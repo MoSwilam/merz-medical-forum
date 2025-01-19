@@ -2,7 +2,6 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { AdminModule } from '../src/admin.module';
-import { message } from '@lib';
 
 describe('AdminController (e2e)', () => {
   let app: INestApplication;
@@ -17,9 +16,10 @@ describe('AdminController (e2e)', () => {
   });
 
   it('/ (GET)', () => {
+    console.log({ server: app.getHttpServer() });
     return request(app.getHttpServer())
-      .get('/')
+      .get('/api/admin/health')
       .expect(200)
-      .expect({ message });
+      .expect('OK');
   });
 });
