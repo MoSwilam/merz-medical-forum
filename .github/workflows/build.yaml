@@ -32,7 +32,7 @@ jobs:
       # Install dependencies
       # echo step
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install
 
       # Run build if present
       - name: Build admin project
