@@ -1,0 +1,62 @@
+name: Node.js CI
+run-name: ${{ github.actor }} is building the medical-forum app 🚀
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  install_and_test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # Set up pnpm
+      - name: Set up pnpm
+        run: |
+          curl -fsSL https://get.pnpm.io/v6.16.js | node - add --global pnpm
+
+      # Set up Node.js
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      # Cache pnpm store to speed up installs
+      - name: Cache pnpm store
+        uses: actions/cache@v3
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      # Install dependencies
+      # echo step
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # Run lint and format (optional)
+      # - name: Run lint
+      #   run: pnpm run lint
+
+      # - name: Run format check (optional)
+      #   run: pnpm run format --check
+
+      # Run build if present
+      - name: Build admin project
+        run: pnpm run build admin
+
+      # Run tests for admin app
+      # - name: Run tests for admin
+      #   run: pnpm run test:e2e --workspace apps/admin
+
+      # Run tests for search app
+      - name: Run unit tests for admin
+        run: pnpm run test admin

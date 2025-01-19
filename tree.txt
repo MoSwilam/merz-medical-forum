@@ -1,0 +1,40 @@
+.
+├── README.md
+├── apps
+│   ├── admin
+│   │   ├── Dockerfile
+│   │   ├── package.json
+│   │   └── tsconfig.app.json
+│   ├── notifications
+│   │   ├── Dockerfile
+│   │   ├── package.json
+│   │   └── tsconfig.app.json
+│   └── search
+│       ├── Dockerfile
+│       ├── package.json
+│       ├── pnpm-lock.yaml
+│       └── tsconfig.app.json
+├── docker-compose.yaml
+├── jest.config.ts
+├── k8s
+│   └── medical-forum
+│       ├── Chart.yaml
+│       ├── values-dev.yaml
+│       └── values.yaml
+├── libs
+│   └── common
+│       └── tsconfig.lib.json
+├── makefile
+├── nest-cli.json
+├── package.json
+├── pnpm-lock.yaml
+├── test
+│   ├── auth-e2e
+│   │   └── auth.e2e-spec.ts
+│   └── jest-e2e.json
+├── tree.txt
+├── tsconfig.build.json
+├── tsconfig.jest.json
+└── tsconfig.json
+
+11 directories, 27 files
