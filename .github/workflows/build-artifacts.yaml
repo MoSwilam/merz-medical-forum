@@ -28,17 +28,17 @@ jobs:
       # Build the Docker image
       - name: Build artifacts
         run: |-
-          docker build -t gcr.io/${{ secrets.GKE_PROJECT }}/${{ env.IMAGE }}:$GITHUB_SHA -f apps/admin/Dockerfile .
+          docker build -t $IMAGE:${{ env.TAG }}  -f apps/admin/Dockerfile .
 
       - name: Push Docker image to GCR
         run: |
-          docker push gcr.io/${{ env.GCP_PROJECT_ID }}/${{ env.IMAGE }}:$GITHUB_SHA
+          docker push $IMAGE:${{ env.TAG }}
 
-      # Optionally, tag the image as 'latest' and push
-      - name: Tag and push latest image
-        run: |
-          docker tag gcr.io/${{ env.GCP_PROJECT_ID }}/${{ env.IMAGE }}:$GITHUB_SHA gcr.io/${{ env.GCP_PROJECT_ID }}/${{ env.IMAGE }}:latest
-          docker push gcr.io/${{ env.GCP_PROJECT_ID }}/${{ env.IMAGE }}:latest
+      # # Optionally, tag the image as 'latest' and push
+      # - name: Tag and push latest image
+      #   run: |
+      #     docker tag gcr.io/${{ env.GCP_PROJECT_ID }}/${{ env.IMAGE }}:$GITHUB_SHA gcr.io/${{ env.GCP_PROJECT_ID }}/${{ env.IMAGE }}:latest
+      #     docker push gcr.io/${{ env.GCP_PROJECT_ID }}/${{ env.IMAGE }}:latest
 
 # docker  build -t europe-west3-docker.pkg.dev/merz-medical-forum/admin/dev:0.0.1 -f apps/admin/Dockerfile .
 # docker push europe-west3-docker.pkg.dev/merz-medical-forum/admin/dev:0.0.1
