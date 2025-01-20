@@ -19,7 +19,6 @@ jobs:
     name: Setup, Build, Publish, and Deploy
     runs-on: ubuntu-latest
     environment: dev
-
     permissions:
       contents: 'read'
       id-token: 'write'
@@ -58,5 +57,5 @@ jobs:
       # Push the Docker image to Google Container Registry
       - name: Push Docker image
         run: |-
-          echo "Pushing image: $IMAGE/$ENV:$TAG"
+          echo "Pushing image: $IMAGE/$ENV:$TAG2"
           docker push "$IMAGE/$ENV:$TAG2"
