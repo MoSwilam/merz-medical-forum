@@ -18,14 +18,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Print all environment variables
-        run: printenv
+      - name: Verify environment variables
+        run: |
+          echo "docker build -t ${{ env.IMAGE }}:${{ env.TAG }}  -f apps/admin/Dockerfile ."
 
       # build docker images
       # Build the Docker image
       - name: Build artifacts
         run: |-
-          docker build -t gcr.io/${{ env.PROJECT_ID }}/${{ env.IMAGE }}:$GITHUB_SHA -f apps/admin/Dockerfile .
+          docker build -t gcr.io/${{ secrets.GKE_PROJECT }}/${{ env.IMAGE }}:$GITHUB_SHA -f apps/admin/Dockerfile .
 
       - name: Push Docker image to GCR
         run: |

@@ -29,13 +29,12 @@ jobs:
       #   with:
       #     node-version: ${{ matrix.node-version }}
       #     cache: 'pnpm'
-
       - name: Verify environment variables
         run: |
           echo "ENV PROJECT_ID=${{ env.PROJECT_ID }}"
           echo "ENV IMAGE=${{ env.IMAGE }}"
-          echo "SECRET GKE_SA_KEY=${{ secrets.GKE_SA_KEY }}"
-          echo "SECRET GKE_ZONE=${{ secrets.GKE_ZONE }}"
+        # echo "SECRET GKE_SA_KEY=${{ secrets.GKE_SA_KEY }}"
+        #  echo "SECRET GKE_ZONE=${{ secrets.GKE_ZONE }}"
 
       # Install dependencies
       # echo step
