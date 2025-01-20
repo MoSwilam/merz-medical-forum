@@ -1,0 +1,56 @@
+name: Build and Deploy to GKE
+
+on:
+  push:
+    branches:
+      - dev
+env:
+  PROJECT_ID: ${{ secrets.GKE_PROJECT }}
+  GKE_CLUSTER: merz-medical-forum # Add your cluster name here.
+  GKE_ZONE: europe-west3 # Add your cluster zone here.
+  DEPLOYMENT_NAME: admin-deployment # Add your deployment name here.
+  IMAGE: europe-west3-docker.pkg.dev/merz-medical-forum/admin
+  ENV: dev
+  TAG: ${{ github.sha }}
+
+jobs:
+  setup-build-publish-deploy:
+    name: Setup, Build, Publish, and Deploy
+    runs-on: ubuntu-latest
+    environment: dev
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      #Authenticate with Google Cloud
+      - name: Authenticate with Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GKE_SA_KEY }}
+
+      - name: Setup Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+        with:
+          project_id: ${{ env.PROJECT_ID }}
+
+      # Configure Docker to use the gcloud command-line tool as a credential
+      # helper for authentication
+      - run: |-
+          gcloud --quiet auth configure-docker
+
+      # Get the GKE credentials so we can deploy to the cluster
+      - uses: google-github-actions/get-gke-credentials@v2
+        with:
+          cluster_name: ${{ env.GKE_CLUSTER }}
+          location: ${{ env.GKE_ZONE }}
+
+      # Build the Docker image
+      - name: Build Docker image
+        run: |-
+          docker build -t $IMAGE:$TAG -f apps/admin/Dockerfile .
+
+      # Push the Docker image to Google Container Registry
+      - name: Push Docker image
+        run: |-
+          docker push $IMAGE/$ENV:$TAG
