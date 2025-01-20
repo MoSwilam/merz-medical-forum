@@ -12,13 +12,17 @@ env:
   IMAGE: europe-west3-docker.pkg.dev/merz-medical-forum/admin
   ENV: dev
   TAG: ${{ github.sha }}
-  TAG2: latest
+  TAG2: 0.0.2
 
 jobs:
   setup-build-publish-deploy:
     name: Setup, Build, Publish, and Deploy
     runs-on: ubuntu-latest
     environment: dev
+
+    permissions:
+      contents: 'read'
+      id-token: 'write'
 
     steps:
       - name: Checkout code
@@ -55,4 +59,4 @@ jobs:
       - name: Push Docker image
         run: |-
           echo "Pushing image: $IMAGE/$ENV:$TAG"
-          docker push "$IMAGE/$ENV:latest"
+          docker push "$IMAGE/$ENV:$TAG2"
