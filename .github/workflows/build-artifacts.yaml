@@ -5,7 +5,7 @@ on:
   push:
     branches:
       - dev
-
+env: dev
 jobs:
   build-artifacts:
     runs-on: ubuntu-latest
@@ -20,7 +20,7 @@ jobs:
 
       - name: Verify environment variables
         run: |
-          echo "docker build -t ${{ secrets.IMAGE }}:${{ env.TAG }}  -f apps/admin/Dockerfile ."
+          echo "docker build -t ${{ env.IMAGE }}:${{ env.TAG }}  -f apps/admin/Dockerfile ."
 
       # build docker images
       # Build the Docker image
