@@ -1,0 +1,12 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: "{{ .Values.dbAppName }}-pvc"
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .Values.dbStorageSize | default "5Gi" }}
+  storageClassName: {{ .Values.storageClassName | default "standard" }}

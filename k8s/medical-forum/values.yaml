@@ -8,7 +8,7 @@ searchAppName: searchapp
 searchAppVersion: 1.0.0
 
 searchImage: searchimage
-searchImageTag: 0.0.6
+searchImageTag: 0.0.2
 searchNodePort: 30020
 
 adminAppName: adminapp
@@ -16,7 +16,7 @@ adminAppVersion: 1.0.0
 adminNodePort: 30000
 
 adminImage: adminimage
-adminImageTag: 0.0.6
+adminImageTag: 0.0.2
 
 dbAppName: postgresimage
 dbImage: postgres

@@ -27,6 +27,10 @@ spec:
             value: "merz_search_db"
           ports:
             - containerPort: 5432
+      volumes:
+        - name: postgres-storage
+          persistentVolumeClaim:
+            claimName: "{{ .Values.dbAppName }}-pvc"
 ---
 apiVersion: v1
 kind: Service
