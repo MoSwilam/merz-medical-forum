@@ -23,16 +23,18 @@ jobs:
           version: 8
 
       # Set up Node.js
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'pnpm'
+      # - name: Use Node.js ${{ matrix.node-version }}
+      #   uses: actions/setup-node@v4
+      #   with:
+      #     node-version: ${{ matrix.node-version }}
+      #     cache: 'pnpm'
 
       - name: Verify environment variables
         run: |
-          echo "PROJECT_ID=${{ env.PROJECT_ID }}"
-          echo "IMAGE=${{ env.IMAGE }}"
+          echo "ENV PROJECT_ID=${{ env.PROJECT_ID }}"
+          echo "ENV IMAGE=${{ env.IMAGE }}"
+          echo "SECRET GKE_SA_KEY=${{ secrets.GKE_SA_KEY }}"
+          echo "SECRET GKE_ZONE=${{ secrets.GKE_ZONE }}"
 
       # Install dependencies
       # echo step
