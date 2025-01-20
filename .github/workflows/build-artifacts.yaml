@@ -17,6 +17,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Verify environment variables
+        run: |
+          echo "PROJECT_ID=${{ env.PROJECT_ID }}"
+          echo "IMAGE=${{ env.IMAGE }}"
+
       # build docker images
       # Build the Docker image
       - name: Build artifacts
