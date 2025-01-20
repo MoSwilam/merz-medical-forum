@@ -11,17 +11,15 @@ jobs:
     runs-on: ubuntu-latest
     environment: dev
 
-    strategy:
-      matrix:
-        node-version: [22.x]
+    # strategy:
+    #   matrix:
+    #     node-version: [22.x]
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Verify environment variables
-        run: |
-          echo "ENV PROJECT_ID=${{ env.PROJECT_ID }}"
-          echo "ENV IMAGE=${{ env.IMAGE }}"
+      - name: Print all environment variables
+        run: printenv
 
       # build docker images
       # Build the Docker image
