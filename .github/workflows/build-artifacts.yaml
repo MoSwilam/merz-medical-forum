@@ -20,8 +20,8 @@ jobs:
 
       - name: Verify environment variables
         run: |
-          echo "PROJECT_ID=${{ env.PROJECT_ID }}"
-          echo "IMAGE=${{ env.IMAGE }}"
+          echo "ENV PROJECT_ID=${{ env.PROJECT_ID }}"
+          echo "ENV IMAGE=${{ env.IMAGE }}"
 
       # build docker images
       # Build the Docker image
