@@ -21,7 +21,7 @@ jobs:
       # Build the Docker image
       - name: Build artifacts
         run: |-
-          docker build -t gcr.io/${{ env.PROJECT_ID }}/${{ IMAGE }}:$GITHUB_SHA -f apps/admin/Dockerfile .
+          docker build -t gcr.io/${{ env.PROJECT_ID }}/${{ env.IMAGE }}:$GITHUB_SHA -f apps/admin/Dockerfile .
 
       - name: Push Docker image to GCR
         run: |
