@@ -48,9 +48,10 @@ jobs:
       # Build the Docker image
       - name: Build Docker image
         run: |-
-          docker build -t $IMAGE:$TAG -f apps/admin/Dockerfile .
+          docker build -t "$IMAGE/$ENV:$TAG" -f apps/admin/Dockerfile .
 
       # Push the Docker image to Google Container Registry
       - name: Push Docker image
         run: |-
-          docker push $IMAGE/$ENV:$TAG
+          echo "Pushing image: $IMAGE/$ENV:$TAG"
+          docker push "$IMAGE/$ENV:$TAG"
