@@ -5,7 +5,9 @@ on:
   push:
     branches:
       - dev
-env: dev
+env:
+  IMAGE: europe-west3-docker.pkg.dev/merz-medical-forum/admin/dev
+  TAG: ${{ github.sha }}
 jobs:
   build-artifacts:
     runs-on: ubuntu-latest
@@ -20,7 +22,7 @@ jobs:
 
       - name: Verify environment variables
         run: |
-          echo "docker build -t ${{ env.IMAGE }}:${{ env.TAG }}  -f apps/admin/Dockerfile ."
+          echo "docker build -t $IMAGE:${{ env.TAG }}  -f apps/admin/Dockerfile ."
 
       # build docker images
       # Build the Docker image
