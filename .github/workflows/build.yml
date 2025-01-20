@@ -55,4 +55,4 @@ jobs:
       - name: Push Docker image
         run: |-
           echo "Pushing image: $IMAGE/$ENV:$TAG"
-          docker push "$IMAGE/$ENV:$TAG2"
+          docker push "$IMAGE/$ENV:latest"
