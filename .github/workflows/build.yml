@@ -12,6 +12,7 @@ env:
   IMAGE: europe-west3-docker.pkg.dev/merz-medical-forum/admin
   ENV: dev
   TAG: ${{ github.sha }}
+  TAG2: latest
 
 jobs:
   setup-build-publish-deploy:
@@ -48,10 +49,10 @@ jobs:
       # Build the Docker image
       - name: Build Docker image
         run: |-
-          docker build -t "$IMAGE/$ENV:$TAG" -f apps/admin/Dockerfile .
+          docker build -t "$IMAGE/$ENV:$TAG2" -f apps/admin/Dockerfile .
 
       # Push the Docker image to Google Container Registry
       - name: Push Docker image
         run: |-
           echo "Pushing image: $IMAGE/$ENV:$TAG"
-          docker push "$IMAGE/$ENV:$TAG"
+          docker push "$IMAGE/$ENV:$TAG2"
