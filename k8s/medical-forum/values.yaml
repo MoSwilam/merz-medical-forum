@@ -7,7 +7,7 @@ namespace: prod
 searchAppName: searchapp
 searchAppVersion: 1.0.0
 
-searchImage: searchimage
+searchImage: europe-west3-docker.pkg.dev/merz-medical-forum/search/dev
 searchImageTag: 0.0.2
 searchNodePort: 30020
 
@@ -15,7 +15,7 @@ adminAppName: adminapp
 adminAppVersion: 1.0.0
 adminNodePort: 30000
 
-adminImage: adminimage
+adminImage: europe-west3-docker.pkg.dev/merz-medical-forum/admin/dev
 adminImageTag: 0.0.2
 
 dbAppName: postgresimage

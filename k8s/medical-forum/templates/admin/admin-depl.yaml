@@ -5,7 +5,7 @@ metadata:
   labels:
     app: {{ .Values.adminAppName }}
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: {{ .Values.adminAppName }}
@@ -17,7 +17,7 @@ spec:
       containers:
         - name: admin
           image: "{{ .Values.adminImage }}:{{ .Values.adminImageTag }}"
-          imagePullPolicy: Never
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3000
 ---

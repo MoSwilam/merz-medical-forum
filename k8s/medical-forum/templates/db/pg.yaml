@@ -17,7 +17,7 @@ spec:
       containers:
         - name: db
           image: {{ .Values.dbImage }}
-          imagePullPolicy: Never
+          imagePullPolicy: IfNotPresent
           env:
           - name: POSTGRES_USER
             value: "postgres"

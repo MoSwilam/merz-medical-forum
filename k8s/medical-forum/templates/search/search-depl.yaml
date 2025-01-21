@@ -5,7 +5,7 @@ metadata:
   labels:
     app: {{ .Values.searchAppName }}
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: {{ .Values.searchAppName }}
@@ -17,7 +17,7 @@ spec:
       containers:
         - name: search
           image: "{{ .Values.searchImage }}:{{ .Values.searchImageTag }}"
-          imagePullPolicy: Never
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3002
 ---
