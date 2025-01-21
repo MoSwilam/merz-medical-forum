@@ -26,6 +26,7 @@ export class SearchController {
 
   @Get('health')
   getHealth() {
+    console.log('Health check search app');
     return 'OK';
   }
 

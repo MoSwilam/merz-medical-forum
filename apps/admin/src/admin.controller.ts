@@ -12,6 +12,7 @@ export class AdminController {
 
   @Get('health')
   getHealth() {
+    console.log('Health check admin app');
     return 'OK';
   }
 }
