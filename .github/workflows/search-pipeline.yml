@@ -11,8 +11,7 @@ env:
   DEPLOYMENT_NAME: search-deployment # Add your deployment name here.
   IMAGE: europe-west3-docker.pkg.dev/merz-medical-forum/search
   ENV: dev
-  TAG: ${{ github.sha }}
-  TAG2: 0.0.3
+  TAG: 0.0.4
 
 jobs:
   setup-build-publish-deploy:
@@ -52,10 +51,10 @@ jobs:
       # Build the Docker image
       - name: Build Docker image
         run: |-
-          docker build -t "$IMAGE/$ENV:$TAG2" -f apps/search/Dockerfile .
+          docker build -t "$IMAGE/$ENV:$TAG" -f apps/search/Dockerfile .
 
       # Push the Docker image to Google Container Registry
       - name: Push Docker image
         run: |-
-          echo "Pushing image: $IMAGE/$ENV:$TAG2"
-          docker push "$IMAGE/$ENV:$TAG2"
+          echo "Pushing image: $IMAGE/$ENV:$TAG"
+          docker push "$IMAGE/$ENV:$TAG"
