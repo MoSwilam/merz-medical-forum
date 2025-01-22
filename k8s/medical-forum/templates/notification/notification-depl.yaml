@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.notificationAppName }}
+  labels:
+    app: {{ .Values.notificationAppName }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.notificationAppName }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.notificationAppName }}
+    spec:
+      containers:
+        - name: notification
+          image: "{{ .Values.notificationImage }}:{{ .Values.notificationImageTag }}"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.notificationAppName }}
+  labels:
+    app: {{ .Values.notificationAppName }}
+spec:
+  ports:
+    - port: 3000
+      targetPort: 3000
+      nodePort: {{ .Values.notificationNodePort }}
+      protocol: TCP
+  selector:
+    app: {{ .Values.notificationAppName }}
+  type: NodePort

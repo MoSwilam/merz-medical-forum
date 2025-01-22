@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { message } from '@lib';
 
 @Injectable()
-export class AppService {
+export class NotificationsService {
   getHello() {
     return { message };
   }

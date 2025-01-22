@@ -2,6 +2,8 @@ FROM node:alpine as builder
 
 WORKDIR /app
 
+RUN apk add --no-cache tree
+
 COPY package.json ./
 COPY pnpm-lock.yaml ./
 COPY tsconfig.json tsconfig.json
@@ -14,7 +16,7 @@ RUN pnpm install
 COPY apps/notifications apps/notifications
 COPY libs libs
 
-RUN pnpm run build
+RUN pnpm run build notification
 
 FROM node:alpine as prod
 
@@ -32,4 +34,5 @@ COPY . .
 
 COPY --from=builder /app/dist ./dist
 
-CMD ["node", "dist/apps/notifications/main.js"]
+#CMD ["pnpm", "run", "start:prod", "dist/apps/notification/main"]
+CMD ["node", "dist/apps/notifications/apps/notifications/src/main.js"]

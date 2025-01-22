@@ -1,0 +1,134 @@
+Name:               gk3-merz-medical-forum-nap-1vbdfnxk-05b291c9-gm8k
+Roles:              <none>
+Labels:             addon.gke.io/node-local-dns-ds-ready=true
+                    beta.kubernetes.io/arch=amd64
+                    beta.kubernetes.io/instance-type=e2-standard-2
+                    beta.kubernetes.io/os=linux
+                    cloud.google.com/gke-boot-disk=pd-balanced
+                    cloud.google.com/gke-container-runtime=containerd
+                    cloud.google.com/gke-cpu-scaling-level=2
+                    cloud.google.com/gke-gcfs=true
+                    cloud.google.com/gke-image-streaming=true
+                    cloud.google.com/gke-logging-variant=DEFAULT
+                    cloud.google.com/gke-max-pods-per-node=32
+                    cloud.google.com/gke-memory-gb-scaling-level=8
+                    cloud.google.com/gke-netd-ready=true
+                    cloud.google.com/gke-nodepool=nap-1vbdfnxk
+                    cloud.google.com/gke-os-distribution=cos
+                    cloud.google.com/gke-provisioning=standard
+                    cloud.google.com/gke-stack-type=IPV4
+                    cloud.google.com/machine-family=e2
+                    cloud.google.com/private-node=false
+                    failure-domain.beta.kubernetes.io/region=europe-west3
+                    failure-domain.beta.kubernetes.io/zone=europe-west3-b
+                    iam.gke.io/gke-metadata-server-enabled=true
+                    kubernetes.io/arch=amd64
+                    kubernetes.io/hostname=gk3-merz-medical-forum-nap-1vbdfnxk-05b291c9-gm8k
+                    kubernetes.io/os=linux
+                    node.kubernetes.io/instance-type=e2-standard-2
+                    node.kubernetes.io/masq-agent-ds-ready=true
+                    topology.gke.io/zone=europe-west3-b
+                    topology.kubernetes.io/region=europe-west3
+                    topology.kubernetes.io/zone=europe-west3-b
+Annotations:        container.googleapis.com/instance_id: 5267021559010349486
+                    csi.volume.kubernetes.io/nodeid:
+                      {"filestore.csi.storage.gke.io":"gk3-merz-medical-forum-nap-1vbdfnxk-05b291c9-gm8k","gcsfuse.csi.storage.gke.io":"gk3-merz-medical-forum-n...
+                    node.alpha.kubernetes.io/ttl: 0
+                    node.gke.io/last-applied-node-labels:
+                      addon.gke.io/node-local-dns-ds-ready=true,cloud.google.com/gke-boot-disk=pd-balanced,cloud.google.com/gke-container-runtime=containerd,clo...
+                    node.gke.io/last-applied-node-taints: 
+                    volumes.kubernetes.io/controller-managed-attach-detach: true
+CreationTimestamp:  Tue, 21 Jan 2025 10:56:54 +0100
+Taints:             <none>
+Unschedulable:      false
+Lease:
+  HolderIdentity:  gk3-merz-medical-forum-nap-1vbdfnxk-05b291c9-gm8k
+  AcquireTime:     <unset>
+  RenewTime:       Tue, 21 Jan 2025 23:43:19 +0100
+Conditions:
+  Type                                              Status  LastHeartbeatTime                 LastTransitionTime                Reason                                                       Message
+  ----                                              ------  -----------------                 ------------------                ------                                                       -------
+  NetworkUnavailable                                False   Tue, 21 Jan 2025 10:57:00 +0100   Tue, 21 Jan 2025 10:56:58 +0100   RouteCreated                                                 NodeController create implicit route
+  DeprecatedAuthsFieldInContainerdConfiguration     False   Tue, 21 Jan 2025 23:42:43 +0100   Tue, 21 Jan 2025 10:56:55 +0100   DeprecatedAuthsFieldInContainerdConfigurationNotDetected     No deprecation risk: did not find any deprecated 'auths' field in containerd's config
+  DeprecatedPullingSchemaV1Image                    False   Tue, 21 Jan 2025 23:42:43 +0100   Tue, 21 Jan 2025 10:56:55 +0100   DeprecatedPullingSchemaV1ImageDetected                       No deprecation risk: did not pull any schema v1 images
+  DeprecatedUsingV1Alpha2Cri                        False   Tue, 21 Jan 2025 23:42:43 +0100   Tue, 21 Jan 2025 10:56:55 +0100   DeprecatedUsingV1Alpha2CriNotDetected                        No deprecation risk: did not use v1alpha2 CRI
+  GcfsSnapshotterUnhealthy                          False   Tue, 21 Jan 2025 23:42:43 +0100   Tue, 21 Jan 2025 10:56:55 +0100   GcfsSnapshotterIsHealthy                                     GcfsSnapshotter on the node is functioning properly
+  DeprecatedMirrorsFieldInContainerdConfiguration   False   Tue, 21 Jan 2025 23:42:43 +0100   Tue, 21 Jan 2025 10:56:55 +0100   DeprecatedMirrorsFieldInContainerdConfigurationNotDetected   No deprecation risk: did not find any deprecated 'mirrors' field in containerd's config
+  CorruptDockerOverlay2                             False   Tue, 21 Jan 2025 23:42:43 +0100   Tue, 21 Jan 2025 10:56:55 +0100   NoCorruptDockerOverlay2                                      docker overlay2 is functioning properly
+  FrequentGcfsSnapshotterRestart                    False   Tue, 21 Jan 2025 23:42:43 +0100   Tue, 21 Jan 2025 10:56:55 +0100   NoFrequentGcfsSnapshotterRestart                             GcfsSnapshotter is functioning properly
+  GcfsdUnhealthy                                    False   Tue, 21 Jan 2025 23:42:43 +0100   Tue, 21 Jan 2025 10:56:55 +0100   GcfsdIsHealthy                                               Gcfsd on the node is functioning properly
+  FrequentGcfsdRestart                              False   Tue, 21 Jan 2025 23:42:43 +0100   Tue, 21 Jan 2025 10:56:55 +0100   NoFrequentGcfsdRestart                                       Gcfsd is functioning properly
+  FrequentKubeletRestart                            False   Tue, 21 Jan 2025 23:42:43 +0100   Tue, 21 Jan 2025 10:56:55 +0100   NoFrequentKubeletRestart                                     kubelet is functioning properly
+  SysctlChanged                                     True    Tue, 21 Jan 2025 23:42:43 +0100   Tue, 21 Jan 2025 16:56:55 +0100   NodeSysctlChange                                             {"unmanaged": {"net.core.default_qdisc": "fq", "net.core.somaxconn": "4096", "net.ipv4.tcp_max_syn_backlog": "4096"}}
+  DeprecatedOtherContainerdFeatures                 False   Tue, 21 Jan 2025 23:42:43 +0100   Tue, 21 Jan 2025 10:56:55 +0100   DeprecatedOtherContainerdFeaturesNotDetected                 No deprecation risk: did not find any deprecations other than 3 configs fields (auths/configs/mirrors), pulling schema v1 images and using v1alpha2 CRI.
+  DeprecatedConfigsFieldInContainerdConfiguration   False   Tue, 21 Jan 2025 23:42:43 +0100   Tue, 21 Jan 2025 10:56:55 +0100   DeprecatedConfigsFieldInContainerdConfigurationNotDetected   No deprecation risk: did not find any deprecated 'configs' field in containerd's config
+  FrequentUnregisterNetDevice                       False   Tue, 21 Jan 2025 23:42:43 +0100   Tue, 21 Jan 2025 10:56:55 +0100   NoFrequentUnregisterNetDevice                                node is functioning properly
+  FrequentContainerdRestart                         False   Tue, 21 Jan 2025 23:42:43 +0100   Tue, 21 Jan 2025 10:56:55 +0100   NoFrequentContainerdRestart                                  containerd is functioning properly
+  ReadonlyFilesystem                                False   Tue, 21 Jan 2025 23:42:43 +0100   Tue, 21 Jan 2025 10:56:55 +0100   FilesystemIsNotReadOnly                                      Filesystem is not read-only
+  SecondaryBootDiskMissingLayer                     False   Tue, 21 Jan 2025 23:42:43 +0100   Tue, 21 Jan 2025 10:56:55 +0100   SecondaryBootDiskNoMissingLayer                              Secondary boot disk has no missing layer
+  KernelDeadlock                                    False   Tue, 21 Jan 2025 23:42:43 +0100   Tue, 21 Jan 2025 10:56:55 +0100   KernelHasNoDeadlock                                          kernel has no deadlock
+  FrequentDockerRestart                             False   Tue, 21 Jan 2025 23:42:43 +0100   Tue, 21 Jan 2025 10:56:55 +0100   NoFrequentDockerRestart                                      docker is functioning properly
+  GcfsSnapshotterMissingLayer                       False   Tue, 21 Jan 2025 23:42:43 +0100   Tue, 21 Jan 2025 10:56:55 +0100   GcfsSnapshotterHasNoMissingLayer                             GCFS Snapshotter has no missing layer
+  MemoryPressure                                    False   Tue, 21 Jan 2025 23:39:23 +0100   Tue, 21 Jan 2025 10:56:54 +0100   KubeletHasSufficientMemory                                   kubelet has sufficient memory available
+  DiskPressure                                      False   Tue, 21 Jan 2025 23:39:23 +0100   Tue, 21 Jan 2025 10:56:54 +0100   KubeletHasNoDiskPressure                                     kubelet has no disk pressure
+  PIDPressure                                       False   Tue, 21 Jan 2025 23:39:23 +0100   Tue, 21 Jan 2025 10:56:54 +0100   KubeletHasSufficientPID                                      kubelet has sufficient PID available
+  Ready                                             True    Tue, 21 Jan 2025 23:39:23 +0100   Tue, 21 Jan 2025 10:57:34 +0100   KubeletReady                                                 kubelet is posting ready status
+Addresses:
+  InternalIP:  10.156.15.207
+  ExternalIP:  35.198.69.208
+Capacity:
+  cpu:                2
+  ephemeral-storage:  98831908Ki
+  hugepages-1Gi:      0
+  hugepages-2Mi:      0
+  memory:             8140748Ki
+  pods:               32
+Allocatable:
+  cpu:                1930m
+  ephemeral-storage:  47060071478
+  hugepages-1Gi:      0
+  hugepages-2Mi:      0
+  memory:             6101964Ki
+  pods:               32
+System Info:
+  Machine ID:                 45fcf27602be0387d292f19c2188be10
+  System UUID:                45fcf276-02be-0387-d292-f19c2188be10
+  Boot ID:                    069adb74-e17b-4c08-bf1b-4be9dd246ed9
+  Kernel Version:             6.1.112+
+  OS Image:                   Container-Optimized OS from Google
+  Operating System:           linux
+  Architecture:               amd64
+  Container Runtime Version:  containerd://1.7.24
+  Kubelet Version:            v1.30.8-gke.1051000
+  Kube-Proxy Version:         v1.30.8-gke.1051000
+PodCIDR:                      10.101.128.0/26
+PodCIDRs:                     10.101.128.0/26
+ProviderID:                   gce://merz-medical-forum/europe-west3-b/gk3-merz-medical-forum-nap-1vbdfnxk-05b291c9-gm8k
+Non-terminated Pods:          (15 in total)
+  Namespace                   Name                             CPU Requests  CPU Limits  Memory Requests  Memory Limits  Age
+  ---------                   ----                             ------------  ----------  ---------------  -------------  ---
+  default                     postgresimage-dbcb986c5-6vpj8    500m (25%)    0 (0%)      2Gi (34%)        0 (0%)         12h
+  default                     searchapp-c9764b989-pqf5h        500m (25%)    0 (0%)      2Gi (34%)        0 (0%)         4h45m
+  gke-gmp-system              collector-bk624                  5m (0%)       0 (0%)      36M (0%)         1032M (16%)    12h
+  kube-system                 anetd-5bwd2                      205m (10%)    1 (51%)     230Mi (3%)       65Mi (1%)      12h
+  kube-system                 efficiency-daemon-n9zzl          5m (0%)       0 (0%)      50Mi (0%)        0 (0%)         12h
+  kube-system                 filestore-node-hpd4j             25m (1%)      1 (51%)     160Mi (2%)       65Mi (1%)      12h
+  kube-system                 fluentbit-gke-big-zcs9z          105m (5%)     1 (51%)     230Mi (3%)       565Mi (9%)     12h
+  kube-system                 gcsfusecsi-node-slhtg            10m (0%)      0 (0%)      30Mi (0%)        150Mi (2%)     12h
+  kube-system                 gke-metadata-server-lnlh5        100m (5%)     0 (0%)      100Mi (1%)       100Mi (1%)     12h
+  kube-system                 gke-metrics-agent-dhrc6          19m (0%)      1 (51%)     155Mi (2%)       190Mi (3%)     12h
+  kube-system                 ip-masq-agent-kmv66              10m (0%)      0 (0%)      16Mi (0%)        0 (0%)         12h
+  kube-system                 netd-zcf9q                       8m (0%)       1 (51%)     65Mi (1%)        65Mi (1%)      12h
+  kube-system                 node-local-dns-pvxvr             30m (1%)      1 (51%)     50Mi (0%)        65Mi (1%)      12h
+  kube-system                 parallelstore-csi-node-k5hwx     15m (0%)      0 (0%)      30Mi (0%)        150Mi (2%)     12h
+  kube-system                 pdcsi-node-xhcp2                 10m (0%)      0 (0%)      20Mi (0%)        500Mi (8%)     12h
+Allocated resources:
+  (Total limits may be over 100 percent, i.e., overcommitted.)
+  Resource           Requests          Limits
+  --------           --------          ------
+  cpu                1547m (80%)       6 (310%)
+  memory             5522149632 (88%)  3040023040 (48%)
+  ephemeral-storage  2Gi (4%)          2Gi (4%)
+  hugepages-1Gi      0 (0%)            0 (0%)
+  hugepages-2Mi      0 (0%)            0 (0%)
+Events:              <none>
