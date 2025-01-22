@@ -11,7 +11,7 @@ env:
   DEPLOYMENT_NAME: admin-deployment # Add your deployment name here.
   IMAGE: europe-west3-docker.pkg.dev/merz-medical-forum/admin
   ENV: dev
-  TAG: 0.0.4
+  TAG: 0.0.5
 
 jobs:
   setup-build-publish-deploy:
