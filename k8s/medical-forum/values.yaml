@@ -6,7 +6,7 @@ namespace: prod
 
 # Search
 searchImage: europe-west3-docker.pkg.dev/merz-medical-forum/search/dev
-searchImageTag: 0.0.5
+searchImageTag: 0.0.6
 searchAppName: searchapp
 searchAppVersion: 1.0.0
 searchNodePort: 30020
@@ -14,7 +14,7 @@ searchNodePort: 30020
 
 # Admin
 adminImage: europe-west3-docker.pkg.dev/merz-medical-forum/admin/dev
-adminImageTag: 0.0.5
+adminImageTag: 0.0.6
 adminAppName: adminapp
 adminAppVersion: 1.0.0
 adminNodePort: 30000
@@ -22,7 +22,7 @@ adminNodePort: 30000
 
 # notification
 notificationImage: europe-west3-docker.pkg.dev/merz-medical-forum/notifications/dev
-notificationImageTag: 0.0.5
+notificationImageTag: 0.0.6
 notificationAppName: notificationapp
 notificationAppVersion: 1.0.0
 notificationNodePort: 30010

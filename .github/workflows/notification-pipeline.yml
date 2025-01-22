@@ -11,7 +11,7 @@ env:
   DEPLOYMENT_NAME: notifications-deployment # Add your deployment name here.
   IMAGE: europe-west3-docker.pkg.dev/merz-medical-forum/notifications
   ENV: dev
-  TAG: 0.0.5
+  TAG: 0.0.6
 
 jobs:
   setup-build-publish-deploy:

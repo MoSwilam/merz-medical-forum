@@ -14,6 +14,8 @@ spec:
       labels:
         app: {{ .Values.adminAppName }}
     spec:
+      # imagePullSecrets:
+      #   - name: gcr-json-key
       containers:
         - name: admin
           image: "{{ .Values.adminImage }}:{{ .Values.adminImageTag }}"
