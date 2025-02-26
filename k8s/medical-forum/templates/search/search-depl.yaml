@@ -14,8 +14,8 @@ spec:
       labels:
         app: {{ .Values.searchAppName }}
     spec:
-      # imagePullSecrets:
-      #   - name: gcr-json-key
+      imagePullSecrets:
+        - name: gcr-json-key
       containers:
         - name: search
           image: "{{ .Values.searchImage }}:{{ .Values.searchImageTag }}"

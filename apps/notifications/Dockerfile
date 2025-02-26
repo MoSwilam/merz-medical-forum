@@ -16,7 +16,7 @@ RUN pnpm install
 COPY apps/notifications apps/notifications
 COPY libs libs
 
-RUN pnpm run build notification
+RUN pnpm run build notifications
 
 FROM node:alpine as prod
 
